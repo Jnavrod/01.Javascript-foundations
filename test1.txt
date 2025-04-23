@@ -1,0 +1,4 @@
+2023-02-14,Juan Perez,1024
+2022-07-11,Ana Martinez,2048
+2021-12-01,Pedro Gómez,309
+2022-12-30,José García,765

@@ -1,0 +1,50 @@
+{
+  "file": "test2.txt",
+  "separator": ",",
+  "totalLines": 5,
+  "validLines": 0,
+  "errorLines": 5,
+  "warnings": 2,
+  "uniqueErrors": [
+    "Invalid date",
+    "Invalid name",
+    "Invalid ID"
+  ],
+  "errors": [
+    {
+      "line": 1,
+      "details": [
+        "Invalid date"
+      ],
+      "severity": "CRITICAL"
+    },
+    {
+      "line": 2,
+      "details": [
+        "Invalid name"
+      ],
+      "severity": "WARNING"
+    },
+    {
+      "line": 3,
+      "details": [
+        "Invalid ID"
+      ],
+      "severity": "CRITICAL"
+    },
+    {
+      "line": 4,
+      "details": [
+        "Invalid date"
+      ],
+      "severity": "CRITICAL"
+    },
+    {
+      "line": 5,
+      "details": [
+        "Invalid name"
+      ],
+      "severity": "WARNING"
+    }
+  ]
+}

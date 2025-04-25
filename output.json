@@ -1,11 +1,11 @@
 {
-  "file": "test2.txt",
+  "file": "test1.txt",
   "separator": ",",
-  "totalLines": 5,
-  "validLines": 0,
-  "errorLines": 5,
-  "warnings": 2,
-  "criticalErrors": 3,
+  "totalLines": 14,
+  "validLines": 5,
+  "errorLines": 9,
+  "warnings": 5,
+  "criticalErrors": 6,
   "uniqueErrors": [
     "Invalid date",
     "Invalid name",
@@ -13,39 +13,69 @@
   ],
   "errors": [
     {
-      "line": 1,
+      "line": 5,
       "details": [
         "Invalid date"
       ],
       "severity": "CRITICAL"
     },
     {
-      "line": 2,
+      "line": 6,
       "details": [
         "Invalid name"
       ],
       "severity": "WARNING"
     },
     {
-      "line": 3,
+      "line": 7,
+      "details": [
+        "Invalid name"
+      ],
+      "severity": "WARNING"
+    },
+    {
+      "line": 8,
+      "details": [
+        "Invalid name"
+      ],
+      "severity": "WARNING"
+    },
+    {
+      "line": 9,
+      "details": [
+        "Invalid name"
+      ],
+      "severity": "WARNING"
+    },
+    {
+      "line": 11,
       "details": [
         "Invalid ID"
       ],
       "severity": "CRITICAL"
     },
     {
-      "line": 4,
+      "line": 12,
       "details": [
-        "Invalid date"
+        "Invalid ID"
       ],
       "severity": "CRITICAL"
     },
     {
-      "line": 5,
+      "line": 13,
       "details": [
-        "Invalid name"
+        "Invalid ID"
       ],
-      "severity": "WARNING"
+      "severity": "CRITICAL"
+    },
+    {
+      "line": 14,
+      "details": [
+        "Invalid date",
+        "Invalid name",
+        "Invalid ID"
+      ],
+      "severity": "CRITICAL"
     }
   ]
 }

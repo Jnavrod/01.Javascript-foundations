@@ -1,38 +1,48 @@
-const CONFIG = require("./config");
+const CONFIG = require("./config")
 
 function isValidDate(date) {
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-    if (!dateRegex.test(date)) return false;
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/
+    if (!dateRegex.test(date)) return false
 
-    const [year, month, day] = date.split("-").map(Number);
-    const dateObj = new Date(year, month - 1, day);
-    return dateObj.getFullYear() === year && dateObj.getMonth() + 1 === month && dateObj.getDate() === day;
+    const [year, month, day] = date.split("-").map(Number)
+    if (month < 1 || month > 12 || day < 1) return false
+
+    const daysInMonth = new Date(year, month, 0).getDate()
+    return day <= daysInMonth
 }
 
 function isValidName(name) {
-    return typeof name === "string" && name.trim().length > 0 && /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(name);
+    return typeof name === "string" && name.trim().length > 0 && /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(name)
 }
 
 function isValidID(id) {
-    return /^\d+$/.test(id) && parseInt(id, 10) > 0;
+    return /^\d+$/.test(id) && parseInt(id, 10) > 0
 }
 
 function verifyLine(line) {
-    const parts = line.split(CONFIG.SEPARATOR);
-    if (parts.length !== 3) return { errors: ["Invalid format"], severity: "CRITICAL" };
+    const parts = line.split(CONFIG.SEPARATOR).map(item => item.trim())
+    if (parts.length !== 3) return { errors: ["Invalid format"], severity: "CRITICAL", criticalCount: 1, warningCount: 0 }
 
-    const [date, name, id] = parts.map(item => item.trim());
+    const [date, name, id] = parts
+    const errors = []
 
-    const errors = [];
-    if (!isValidDate(date)) errors.push("Invalid date");
-    if (!isValidName(name)) errors.push("Invalid name");
-    if (!isValidID(id)) errors.push("Invalid ID");
+    let criticalCount = 0
+    let warningCount = 0
 
-    const severity = errors.some(err => CONFIG.ERROR_LEVELS.CRITICAL.includes(err))
-        ? "CRITICAL"
-        : "WARNING";
+    const validateError = (condition, errorMessage) => {
+        if (condition) {
+            errors.push(errorMessage)
+            CONFIG.ERROR_LEVELS.CRITICAL.includes(errorMessage) ? criticalCount++ : warningCount++
+        }
+    }
 
-    return errors.length > 0 ? { errors, severity } : { valid: true };
+    validateError(!isValidDate(date), "Invalid date")
+    validateError(!isValidName(name), "Invalid name")
+    validateError(!isValidID(id), "Invalid ID")
+
+    const severity = criticalCount > 0 ? "CRITICAL" : "WARNING"
+
+    return errors.length > 0 ? { errors, severity, criticalCount, warningCount } : { valid: true }
 }
 
-module.exports = { isValidDate, isValidName, isValidID, verifyLine };
+module.exports = { isValidDate, isValidName, isValidID, verifyLine }

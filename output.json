@@ -5,6 +5,7 @@
   "validLines": 0,
   "errorLines": 5,
   "warnings": 2,
+  "criticalErrors": 3,
   "uniqueErrors": [
     "Invalid date",
     "Invalid name",

@@ -1,9 +1,9 @@
 const CONFIG = {
-    SEPARATOR: ",", // Default separator, can be changed to ";" or "|"
+    SEPARATOR: ",",
     ERROR_LEVELS: {
         CRITICAL: ["Invalid date", "Invalid ID"],
-        WARNING: ["Invalid name"], // Names with lowercase or special characters can be considered warnings
+        WARNING: ["Invalid name"],
     }
-};
+}
 
-module.exports = CONFIG;
+module.exports = CONFIG

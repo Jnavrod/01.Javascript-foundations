@@ -5,10 +5,13 @@ function isValidDate(date) {
     if (!dateRegex.test(date)) return false
 
     const [year, month, day] = date.split("-").map(Number)
-    if (month < 1 || month > 12 || day < 1) return false
+    if (month < 1 || month > 12 || day < 1 || day > 31) return false
 
-    const daysInMonth = new Date(year, month, 0).getDate()
-    return day <= daysInMonth
+    const parsedDate = new Date(year, month - 1, day)
+
+    return parsedDate.getFullYear() === year &&
+    parsedDate.getMonth() + 1 === month &&
+    parsedDate.getDate() === day
 }
 
 function isValidName(name) {
